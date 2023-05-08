@@ -20,6 +20,12 @@
     ],
     "react/prop-types": "off",
     "no-console": "warn",
-    "node/no-missing-import": "warn"
+    "node/no-missing-import": "warn",
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": 
+    [ "error",
+      {
+        "endOfLine": "auto"}
+    ]
   }
 }

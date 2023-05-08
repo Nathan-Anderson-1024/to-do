@@ -16,11 +16,16 @@
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": "error",
     "no-unused-vars": "warn",
     "prefer-destructuring": "warn",
     "no-console": "warn",
     "camelcase": "off",
-    "node/no-missing-import": "warn"
+    "node/no-missing-import": "warn",
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": 
+    [ "error",
+      {
+        "endOfLine": "auto"}
+    ]
   }
 }

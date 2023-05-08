@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { getTodos, createTodo, removeTodo } from './util';
@@ -10,11 +11,42 @@ const App = () => {
   const [error, setError] = useState();
 
 // Create a fetchTodos() function to update the View from Model using getTodos() function from Controller
-
+const fetchTodos = async () => {
+  const response = await getTodos();
+  if (response.error) {
+    setError(response.error.name);
+  }
+  setTodoList(response.data)
+};
 // Create a handleDelete() function to remove to-do list with matching id
-
+const handleDelete = async (id) => {
+  try {
+    await removeTodo(id);
+    fetchTodos();
+  } catch (err) {
+    setError(err)
+  }
+}
 // Create a handleSubmit() function to add new to-do list
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  setError();
+  const data = new FormData(event.currentTarget);
+  try {
+    data.set('description', todo.description);
+    data.set('created_at', `${new Date().toISOString()}`);
+    const newTodo = await createTodo(data);
+    if (newTodo.error) {
+      setError(newTodo.error)
+    }
+    setTodo({description: ''});
+    fetchTodos();
+  }
+  catch (err) {
+    setError(err);
+  }
 
+};
 
   useEffect(() => {
     fetchTodos();

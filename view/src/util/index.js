@@ -14,9 +14,7 @@ export const createTodo = async (todo) => {
 
 export const getTodos = async () => {
     try {
-        const response = await fetch('/api/todos', {
-            method: 'GET'
-        })
+        const response = await fetch('/api/todos')
         const json = await response.json();
         return json
     } catch (error) {
